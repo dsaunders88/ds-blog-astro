@@ -1,17 +1,51 @@
 ---
+import { getCollection, getEntry, render } from "astro:content";
 import BookPreview from "@components/books/BookPreview.astro";
 import Breadcrumbs from "@components/navigation/Breadcrumbs.astro";
 import PageHeader from "@components/document/PageHeader.astro";
 import PageWrapper from "@components/document/PageWrapper.astro";
-import { getCollection } from "astro:content";
+import { getPageMeta } from "@utils/meta";
+
+const page = await getEntry("pages", "books-index");
+if (!page) {
+    throw new Error("page not found");
+}
+const { Content } = await render(page);
 
 const books = await getCollection("books");
+const shelves = await getCollection("shelves");
 ---
 
-<PageWrapper>
+<PageWrapper pageID={page.id} pageMeta={getPageMeta(page)}>
     <div class="content-wrapper">
         <Breadcrumbs />
-        <PageHeader title="Books" />
+        <PageHeader title={page.data.title}>
+            <div class="preview">
+                <Content />
+            </div>
+        </PageHeader>
+        <details class="shelves">
+            <summary>View Shelves Index</summary>
+            <ul class="shelves-list | cluster">
+                {
+                    shelves.map((shelf) => (
+                        <li>
+                            <a
+                                class="shelf-link"
+                                href={`/library/shelves/${shelf.id}`}
+                            >
+                                <span>#{shelf.data.Name}</span>
+                            </a>
+                            {shelf.data.Books && (
+                                <sub>
+                                    {(shelf.data.Books as string[]).length}
+                                </sub>
+                            )}
+                        </li>
+                    ))
+                }
+            </ul>
+        </details>
         <div class="list-spacer">
             <ul class="fluid-grid">
                 {
@@ -31,5 +65,25 @@ const books = await getCollection("books");
         --grid-item-min-size: 10rem;
         column-gap: 1.5rem;
         row-gap: var(--space-l);
+    }
+
+    .shelves {
+        margin-block-start: var(--space-xs);
+
+        & summary {
+            font-size: var(--step--1);
+            padding: 0.5rem 0;
+            font-weight: 700;
+        }
+    }
+
+    .shelves-list {
+        font-size: var(--step--1);
+        column-gap: 1rem;
+        row-gap: 0.5rem;
+    }
+
+    .shelf-link + sub {
+        margin-inline-start: 3px;
     }
 </style>

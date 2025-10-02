@@ -2,7 +2,7 @@ import { defineCollection, reference, z } from "astro:content";
 import { glob, file } from "astro/loaders";
 import { airtableLoader } from "@ascorbic/airtable-loader";
 
-export const pages = defineCollection({
+const pages = defineCollection({
     loader: glob({
         pattern: "**/*.(md|mdx)",
         base: "./src/content/pages",
@@ -27,7 +27,7 @@ export const pages = defineCollection({
     }),
 });
 
-export const posts = defineCollection({
+const posts = defineCollection({
     loader: glob({
         pattern: "**/*.(md|mdx)",
         base: "./src/content/posts",
@@ -44,7 +44,7 @@ export const posts = defineCollection({
     }),
 });
 
-export const postCategories = defineCollection({
+const postCategories = defineCollection({
     loader: file("./src/content/posts/postCategories.yaml"),
     schema: z.object({
         title: z.string(),
@@ -58,14 +58,14 @@ export const postCategories = defineCollection({
     }),
 });
 
-export const postTags = defineCollection({
+const postTags = defineCollection({
     loader: file("./src/content/posts/postTags.yaml"),
     schema: z.object({
         title: z.string(),
     }),
 });
 
-export const reviews = defineCollection({
+const reviews = defineCollection({
     loader: glob({
         pattern: "**/*.(md|mdx)",
         base: "./src/content/library/reviews",
@@ -93,7 +93,7 @@ export const reviews = defineCollection({
     }),
 });
 
-export const updates = defineCollection({
+const updates = defineCollection({
     loader: glob({
         pattern: "**/*.(md|mdx)",
         base: "./src/content/now-updates",
@@ -106,7 +106,7 @@ export const updates = defineCollection({
     }),
 });
 
-export const siteNavigation = defineCollection({
+const siteNavigation = defineCollection({
     loader: file("./src/content/siteNavigation.yaml"),
     schema: z.object({
         title: z.string(),
@@ -122,7 +122,7 @@ export const siteNavigation = defineCollection({
     }),
 });
 
-export const books = defineCollection({
+const books = defineCollection({
     loader: airtableLoader({
         base: import.meta.env.AIRTABLE_BASE_ID,
         token: import.meta.env.AIRTABLE_ACCESS_TOKEN,
@@ -153,6 +153,21 @@ export const books = defineCollection({
     }),
 });
 
+const shelves = defineCollection({
+    loader: airtableLoader({
+        base: import.meta.env.AIRTABLE_BASE_ID,
+        token: import.meta.env.AIRTABLE_ACCESS_TOKEN,
+        table: import.meta.env.AIRTABLE_SHELVES_TABLE_ID,
+        queryParams: {
+            fields: [
+                "fldNFgBiC822esCmc", // name
+                "fldJgCN8sJ20NVn1l", // book records
+            ],
+            sort: [{ field: "Name", direction: "asc" }],
+        },
+    }),
+});
+
 export const collections = {
     pages,
     posts,
@@ -161,5 +176,6 @@ export const collections = {
     reviews,
     siteNavigation,
     books,
+    shelves,
     updates,
 };
