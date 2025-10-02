@@ -107,7 +107,7 @@ code {
 .astro-code {
     font-family: var(--font-mono);
     font-size: 14px;
-    line-height: 1.65;
+    line-height: 1.75;
     padding-block: var(--space-m);
     border-radius: var(--rounded-xs);
 }
