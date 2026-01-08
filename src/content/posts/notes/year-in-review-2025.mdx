@@ -1,0 +1,94 @@
+---
+title: Year in Review, 2025
+date: 2026-01-08
+summary: A look back at the exhasuting but resilient year that was 2025.
+category: notes
+tags: [year-review, life]
+---
+
+import Figure from "@components/posts/Figure.astro";
+import image1 from "@assets/posts/cats.png";
+import image2 from "@assets/posts/collage.png";
+import image3 from "@assets/posts/ucla-window.png";
+
+In addition to my annual [“year in reading” post](/posts/tags/year-end-list), which is hopefully to come soon, I thought I would put together a more personal reflection on the year that was 2025 and intentions for 2026. It feels strange to do at this moment, given the daily horror show of American fascism (fuck ICE) and the steady untethering of our already frail social fabric. I'm also writing this a year to the day from the devastating Los Angeles wildfires, which directly impacted our entire city and many I know personally. Despite all this, 2025 felt like a year of finding my ground, often in very literal ways (thanks in large part to tai chi).
+
+Precisely because of these desperate times, I tried to be more intentional about plugging into local community, focusing on my mental/emotional/spiritual health and self-development, and cultivating relationships with my partner, our cats, our friends, and the earth itself. It wasn’t always easy, but each of these actions helped to build resilience and hope.
+
+On top of that, I’m officially in my late 30s, and I feel the rapid approach of a “give no fucks” attitude to the wide world of nonsense that seems to be everywhere in our present moment. It’s time to rise above the _slop_ and focus on what really matters. Although it’s important to recognize that the interrelated material effects of [tech enshittification](https://us.macmillan.com/books/9780374619329/enshittification), political destabilization, and regular climate disaster all require _collective action_ to effectively oppose, I feel increasingly called to do everything in my personal power to “de-enshittify” the world around me.
+
+This means striving for excellence and a sense of craft in everything I make, whether professionally or recreationally, and not giving up hard-won skills to senseless, spammy AI cruft (looking at you, ✨vibe coding✨ and most social media). It means living and acting from our interconnected humanity and taking every opportunity, however small, to ask of the decisions, tools, and paths in front of us, “is this helping to bring people together or to drive us apart?” In 2026, it is the former that I hope more and more people will choose to follow.
+
+## UCLA
+
+I completed my first full year (both academic and solar) at the University of California, Los Angeles since starting there in 2024, working as a part-time web developer, digital designer, and all-around tech generalist with the [Pourdavoud Institute for the Study of the Iranian World](https://pourdavoud.ucla.edu). Apart from the truly terrible cross-L.A. commute (which averages 1 hour and 15 minutes each way) and the tepid institutional leadership on the national stage, this has been far and away the best job I’ve had since...maybe ever? In the current climate, both at UCLA and elsewhere, I’m so grateful to have a job (with UC benefits!) in my chosen profession—especially one where I have broad leeway to work on many different kinds of projects and to exercise my creativity in service of the noble mission of disseminating open-access knowledge.
+
+I have also loved being on a beautiful campus in an academic setting. Even though I applied to the job somewhat arbitrarily, the research focus of the institute on ancient/pre-Islamic Persia has proved to be remarkably compatible with many of my long-standing interests, and has sparked new areas of exploration. Given the intersection of antiquity, religious studies, and literary traditions, I’ve particularly enjoyed learning more about the impact of the Persian Empire on Second Temple Judaism and early Christianity. And in general, I have appreciated just being on a good team again after years of solo freelancing, especially with people who get excited by things like etymological discussions and mapping ancient worlds.
+
+In terms of projects, the big one I worked on was a complete redesign/rebuild of the institute’s two main websites (for the [Pourdavoud Institute](https://pourdavoud.ucla.edu) and the [Yarshater Center](https://yarshater.ucla.edu)). I moved them off of a broken and literally decade-old WordPress instance to a headless/static-site setup powered by [Astro](https://astro.build) and [Sanity](https://www.sanity.io). This took me the better part of the year, as I was solely responsible for everything from building the site to migrating content, but I think it was a huge success. Not only were there massive improvements for accessibility and performance (the old site had a ~7 second home page load, which was shaved down to milliseconds), but everyone is now much happier with the content workflow, site navigability, and ease of adding custom integrations. I also had fun writing a mini [Hono server](https://hono.dev) to listen for webhooks to trigger and log site builds from the Sanity dashboard.
+
+Through a series of unforeseen events that can only happen at a university, I also found myself in the position of layout designer and technical editor on an academic journal which has passed into our hands. This was quite serendipitous, as before I pivoted to web development I had done some publication design work and found it to be really fun (although often grueling). I even got the chance to alter the journal’s font, as we needed to add in certain diacritical markings for transliterations. Maybe 2026 is the year I take a stab at type design!
+
+<Figure
+    src={image3}
+    alt="A window looking out on a sunny L.A. hilltop, with books and plants on the windowsill."
+    caption="View from my window at UCLA."
+/>
+
+## Freelance
+
+I continued to build and manage websites as a freelancer, but because of the UCLA job, I was able to devote only about 25% of my time to these projects. Honestly, this was a welcome change from prior years, because it meant I could focus on a handful of bigger projects and not worry about finding smaller things to fill in the cracks. The downside was that projects tended to take longer and were fewer in number, but scaling back felt necessary to avoid burnout.
+
+I’m feeling somewhat ambivalent about freelancing these days, and I’m reevaluating how I want to balance this work with UCLA work in the coming year. But I was very proud of the projects that I did get to work on. In particular, it was another successful year of collaborating with Haymarket Books, an independent, leftist publisher based in Chicago. This year I helped them redesign their site for [Haymarket House](https://www.haymarkethouse.org/), a community organizing space. I had to build a custom WordPress block theme for this, which was wild and which I’ll never do again (encoding JSON in HTML comments, are you out of your damn mind, WordPress?), but nevertheless I’m happy with how it turned out. It is a gift to work on creative projects with such a strong mission for social and economic justice, especially in these times.
+
+Otherwise, I perfected what I think is the Platonic form of [the Episcopal Church website](https://stalbanswestwood.org) and built a few decently sized non-profit sites. I will also include in this category the redesign of [my own personal site/blog](/posts/notes/new-astro-site-2025) and the site for [my partner’s yoga practice](https://movewithcait.com) (which apparently always makes a good impression on her teacher peers).
+
+My go-to web framework is definitely [Astro](https://astro.build), and I always try to find a way to build sites with a static-first aproach. But this year I fully embraced [Statamic](https://statamic.com) for building dynamic CMS sites that are meant to be handed off to teams to update frequently, which is most of what I build. PHP might be unsexy (and boy do I hate writing it), but it still has one of the best ecosystems for managing content and administering servers (shoutout to [Ploi](https://ploi.io)), and Statamic is a solid product with a very helpful community. It’s also nice just to take a temporary breather from the shitshow that is the JavaScript world.
+
+## Interests/Projects/Creativity
+
+**Coding.** I spent more time with the [Go programming language](https://go.dev), which I really like and want to use more of in my webdev work and everyday tasks. I’m sure its meme/hype status has been eclipsed compared to where it was a few years ago, but—and I say this as someone with no computer science background—it feels like what a “real,” modern programming language should be. Static types are amazing compared to JavaScript, and you don’t have to deal with all of the fussy annoyances of TypeScript. It's simple enough to learn coming from a JS background, but it's getting me to dive a lot deeper into the underlying fundamentals of what I'm doing. Among other little side projects, I built myself a command line library in Go to handle some scripting/templating tasks, and I also completed 75% of the [Advent of Code puzzles using Go](https://github.com/dsaunders88/advent-of-code-2025) (I tapped out as soon as linear algebra was introduced). I’m hooked!
+
+**Music/singing.** I returned to choral singing after taking a few years off. I feel like I have finally reached a point where music, especially singing, feels fun and spontaneous and enjoyable again, which was previously hampered by years of perfectionism and the super-spreader risks of the pandemic. I was also very grateful to rediscover, after an absence of about a decade, the joys of [Sacred Harp](https://en.wikipedia.org/wiki/Sacred_Harp) singing. There is a local meetup near us, and it’s been a blast to participate in this unique art form and make new friends in an incredibly kind and welcoming community. (For those unfamiliar with Sacred Harp, [here is what you’re missing](https://youtu.be/m34OaYzG9NE).) I’m also very excited to experiment with a Roland digital piano that I bought at the end of the year.
+
+**Physical media.** 2025 was a year of physical media, which I think is on the rise across all fronts, not least because of the abysmal state of AI-powered apps™️. I listened to CDs and vinyls, created collages, and ditched most digital time-tracking/task apps for the sensory pleasures of pen and paper—although I still use the amazing (and free) [Obsidian app](https://obsidian.md/) for compiling/archiving notes. It turns out physical paper and writing by hand is also good for my neurodivergent brain. I like repeating the same bits of information and having them exist in many places/forms at once, as it helps me to actually remember and prioritize information. (I think I’m currently using about 4 [Leuchtturm1917](https://www.leuchtturm1917.us/) notebooks for various areas of work and life.) In 2026, I would love to find more creative outlets in print media, and want to take a class in printmaking/risograph or some similar technique.
+
+**Language.** Partly because of the occasional Persian I come across in connection with my UCLA job, I decided to start decoding the Arabic alphabet (which the Persian language uses). It feels like a superpower to look at a foreign alphabet/script and be able to sound out words, even if the meaning is still obscure. So I have been practicing writing and sounding out the _abjad_, which is absolutely beautiful. I did a few deep dives into Arabic itself and I think I want to focus on learning a bit of it in the next year,<br/> إن شاء اللّه.
+
+<Figure
+    src={image2}
+    alt="A table covered in cutout scraps of paper and tools for collaging."
+    caption="Collaging."
+/>
+
+## Well-being/Community
+
+I did a lot to take care of myself in 2025. Primarily, I continued to practice tai chi (or _tàijíquán_ in pinyin) a few times a week, which has been a source of physical, mental, and spiritual nourishment. I’m mentored by a Sifu who teaches the 108-form [Wu style](https://en.wikipedia.org/wiki/Wu-style_tai_chi) of traditional tai chi, which is [martial arts-focused](https://youtu.be/v4pezeJWpVM) and which develops strong roots and fluid movements. It’s been a hugely positive source of strength, focus, and adaptability in my everyday life—tai chi is all about "firm softness" and redirecting aggressive energy, something we all need a lot more of. I’m also learning a sword form featuring the Chinese straight sword (_jian_), which, let’s be honest, looks pretty badass.
+
+Towards the end of the year, I started working with a creative coach/mentor who specializes in neurodivergence. The latter is still a pretty new thing I’m exploring in general, but this process has been validating, challenging, and inspiring all at once. I’ve never been so intentional and systematic in trying to understand both my specific struggles and my strengths/life purpose, and I’m excited to see where this focus leads in the new year.
+
+My wife Caitlyn and I marked our tenth anniversary this last summer (where did that time go??), and we tried to take some space out of a busy year to celebrate in a few different ways. (We’re doing that more fully this month with a trip to Mexico City!) We experienced the mind-blowing magic of Evan Funke’s Italian comfort food at [Felix Trattoria](https://felixla.com) in Venice Beach; I still think about the insanely delicious _sfincione_, or Sicilian focaccia, all the time. Then we decamped to the oddly hip Pioneertown out in the desert near Joshua Tree, in the middle of summer, for a Gogol Bordello show. It was of course wonderfully nostalgic (they were one of Caitlyn’s favorite bands in college), but it was also profoundly cathartic to mosh and scream to Ukrainian anarchist punk with a throng of other people under a desert sky. A few other notable reprieves included a weekend trip to Pismo Beach/San Luis Obispo to experience the glory of the central California coast, and camping in a big meadow (aptly named Big Meadow) in the Sequoia National Forest.
+
+Finally, there were all the myriad ways we deepened and expanded our community. I branched out and started attending my local [TypeThursday meetup](https://www.typethursday.org), to make connections with other designers and to do the vulnerable work of sharing works in progress. As a small gesture of solidarity with Palestinians, I cooked Levantine food for friends on Thanksgiving and designed fancy menu cards, just because it's nice to have nice things.
+
+I somehow found the time to be a part of not one, but two book clubs—the first following on a great [first year in 2024](/posts/lists/my-year-in-reading-2024/#the-social-novel-book-club) with more interesting fiction from around the world, and the second with three of us slogging through David Graeber and David Wengrow’s _The Dawn of Everything_ (more on books to come in the year in reading post). It’s such a pleasure to expand your own experience of a text alongside other dedicated, smart, like-minded people—something I don’t take for granted!
+
+I also inaugurated the first of what will hopefully be many more experimental/ambient listening sessions with other music aficionados. The first Los Angeles Listening Party (LA/LP) brought together a dozen of us to sit awkwardly in a room together, without phones, to have our minds melted by the psychedelic looping organs of [Terry Riley’s _Shri Camel_](https://youtu.be/ZfHmEblM1Dk). Again, just the act of experiencing art together in person with others feels profound and even revolutionary these days, and I want so much more of it in 2026.
+
+<Figure
+    src={image1}
+    alt="Collage of two cats; on the left is a sleek Bengal in profile sitting next to me as I read a book, on the right is a wide-eyed small gray cat splayed out on the bed with an absurd look on his face."
+    caption="And I can’t forget our wonderful cats, one a beautiful tsarina and one a strange little Narodnik."
+/>
+
+## Media
+
+To close out this over-long post, here is my shortlist of favorite media I spent time with last year:
+
+-   **Books:** A longer post to come, but notably _Ancient Christianities: The First Five Hundred Years_ by Paula Fredriksen (2024), for its portrayal of the complex diversity and social expressions of early Christian communities; and _The Night Watchman_ by Louise Erdrich (2020), for its moving story of an Ojibwe community fighting against the Indian termination policies of the US government in the 1950s
+-   **TV/Film:** _The Barchester Chronicles_ (1982), an all-time great BBC production about English church drama, with Alan Rickman in hist best role as the chaplain Obadiah Slope; _Conclave_ (2024) and _Wake Up Dead Man_ (2025) both had surprisingly nuanced depictions of religion; _Severance_ (2022) is heady sci-fi at its best
+-   **Music:** _Mayhem_ by Lady Gaga (2025) was on repeat for me all year for its roster of insanely catchy and dynamic songs; a lot of Pete Seeger, for songs of hope and resistance; a lot of metal, as an outlet for all the rage
+-   **Games:** _The Legend of Zelda: Tears of the Kingdom_
+    (2023), _Hollow Knight: Silksong_ (2025) (too hard to finish), _Hades 2_ (2025)
+
+What a post—if you made it all the way here, we are now friends if we weren't already.

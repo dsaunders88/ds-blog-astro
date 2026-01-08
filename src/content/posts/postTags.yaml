@@ -10,6 +10,8 @@
   title: Film
 - id: history
   title: History
+- id: life
+  title: Life
 - id: philosophy
   title: Philosophy
 - id: politics
@@ -30,3 +32,5 @@
   title: Web Development
 - id: year-end-list
   title: Year-End List
+- id: year-review
+  title: Year in Review
