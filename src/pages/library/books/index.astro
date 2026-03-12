@@ -24,7 +24,7 @@ const shelves = await getCollection("shelves");
                 <Content />
             </div>
         </PageHeader>
-        <details class="shelves">
+        <details class="shelves" open>
             <summary>View Shelves Index</summary>
             <ul class="shelves-list | cluster">
                 {
@@ -38,7 +38,7 @@ const shelves = await getCollection("shelves");
                             </a>
                             {shelf.data.Books && (
                                 <sub>
-                                    {(shelf.data.Books as string[]).length}
+                                    {shelf.data["Number of Books (Blog)"]}
                                 </sub>
                             )}
                         </li>
@@ -49,11 +49,13 @@ const shelves = await getCollection("shelves");
         <div class="list-spacer">
             <ul class="fluid-grid">
                 {
-                    books.map((book) => (
-                        <li>
-                            <BookPreview book={book} />
-                        </li>
-                    ))
+                    books
+                        .filter((book) => book.id !== "recpEL2c1NdzAMRbu")
+                        .map((book) => (
+                            <li>
+                                <BookPreview book={book} />
+                            </li>
+                        ))
                 }
             </ul>
         </div>

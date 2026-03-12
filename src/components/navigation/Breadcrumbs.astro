@@ -3,7 +3,7 @@ import { getEntry } from "astro:content";
 import v from "voca";
 
 interface Props {
-    collection?: "posts" | "reviews" | "books" | "tags" | "pages";
+    collection?: "posts" | "reviews" | "books" | "tags" | "pages" | "shelves";
 }
 
 type Breadcrumb = {
@@ -35,7 +35,7 @@ for (let i = 0; i < urlParts.length; i++) {
     };
 
     // search collection for id matches to get full title
-    if (["posts", "reviews", "tags", "books"].includes(collection)) {
+    if (["posts", "reviews", "tags", "books", "shelves"].includes(collection)) {
         // if not last, simply capitalize url part as shortcut
         if (!(i == urlParts.length - 1)) {
             breadcrumb.title = v.capitalize(urlPart);
@@ -76,6 +76,15 @@ for (let i = 0; i < urlParts.length; i++) {
                 }
                 const bookEntry = await getEntry("books", bookID);
                 breadcrumb.title = bookEntry?.data.Title ?? "";
+            } else if (collection == 'shelves') {
+                // get tag id from url by slicing `/library/shelves/`
+                let shelfID = Astro.url.pathname.slice(17);
+                // remove trailing if exists (for build)
+                if (shelfID.endsWith("/")) {
+                    shelfID = shelfID.slice(0, -1);
+                }
+                const shelfEntry = await getEntry("shelves", shelfID);
+                breadcrumb.title = shelfEntry?.data.Name ?? "";
             }
         }
     } else if (collection == "pages") {

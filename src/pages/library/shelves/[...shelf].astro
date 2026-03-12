@@ -1,0 +1,56 @@
+---
+import BookPreview from "@components/books/BookPreview.astro";
+import Breadcrumbs from "@components/navigation/Breadcrumbs.astro";
+import PageHeader from "@components/document/PageHeader.astro";
+import PageWrapper from "@components/document/PageWrapper.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+    const shelves = await getCollection("shelves");
+
+    return shelves.map((shelf) => ({
+        params: {
+            shelf: shelf.id,
+        },
+        props: { shelf },
+    }));
+}
+
+const { shelf } = Astro.props;
+
+const books = await getCollection("books", ({ data }) => {
+    return (data.Shelves as string[])?.includes(shelf.id);
+});
+---
+
+<PageWrapper pageID={shelf.id}>
+    <div class="content-wrapper">
+        <Breadcrumbs collection="shelves" />
+        <PageHeader
+            count={books.length}
+            title={shelf.data.Name as string}
+            type="Bookshelf"
+        />
+        <div class="list-spacer">
+            <ul class="fluid-grid">
+                {
+                    books
+                        .filter((book) => book.id !== "recpEL2c1NdzAMRbu")
+                        .map((book) => (
+                            <li>
+                                <BookPreview book={book} />
+                            </li>
+                        ))
+                }
+            </ul>
+        </div>
+    </div>
+</PageWrapper>
+
+<style>
+    .fluid-grid {
+        --grid-item-min-size: 10rem;
+        column-gap: 1.5rem;
+        row-gap: var(--space-l);
+    }
+</style>

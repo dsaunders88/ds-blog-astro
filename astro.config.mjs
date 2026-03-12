@@ -39,6 +39,7 @@ export default defineConfig({
         // new URLs
         "/books": "/library",
         "/posts/reviews": "/library/reviews",
+        "/library/shelves": "/library/books",
         // "/posts/reviews/[...slug]": "/library/reviews/[...slug]",
         // "/tag/[...slug]": "/posts/tags/[...slug]",
         // new post locations

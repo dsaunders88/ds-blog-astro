@@ -117,7 +117,7 @@ const siteNavigation = defineCollection({
                 title: z.string(),
                 href: z.string(),
                 external: z.boolean().nullish(),
-            })
+            }),
         ),
     }),
 });
@@ -136,6 +136,7 @@ const books = defineCollection({
                 "fldmxfzZCXUAGUK4B", // subtitle
                 "fldzsPiopP5cKIbIZ", // cover
                 "flda7YzOmMCTooNYb", // author full name
+                "fldiE1mbB0w6SFjzL", // shelf reference ids
                 "fldP1f9dAEutLAHAE", // shelf names
                 "fld6QxVFGkyIEtlou", // page count
                 "fldCixuPBT3KpC99I", // own
@@ -162,6 +163,7 @@ const shelves = defineCollection({
             fields: [
                 "fldNFgBiC822esCmc", // name
                 "fldJgCN8sJ20NVn1l", // book records
+                "fldPJsO03IBj1yY8q", // number of books (blog)
             ],
             sort: [{ field: "Name", direction: "asc" }],
         },
