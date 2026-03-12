@@ -31,6 +31,8 @@
       #   href: /library/activity
       - title: Books
         href: /library/books
+      - title: Shelves
+        href: /library/shelves
       - title: Reviews
         href: /library/reviews
 - id: elsewhere
@@ -46,6 +48,9 @@
         external: true
       - title: Mastodon
         href: https://mstdn.social/@dsaunders
+        external: true
+      - title: Ko-Fi
+        href: https://ko-fi.com/dsaunders88
         external: true
       - title: GitHub
         href: https://github.com/dsaunders88
