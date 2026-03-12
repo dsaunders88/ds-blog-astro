@@ -49,9 +49,9 @@ if (title) {
 />
 <meta content="website" property="og:type" />
 <meta
-    content={currentPath == "/"
-        ? `${siteDefaults.domain}/images/default-og.png`
-        : `${siteDefaults.domain}/og/${id}.png`}
+    content={currentPath.includes("/posts/")
+        ? `${siteDefaults.domain}/og/${id}.png`
+        : `${siteDefaults.domain}/images/default-og.png`}
     property="og:image"
 />
 <meta
