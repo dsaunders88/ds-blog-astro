@@ -75,7 +75,7 @@ for (let i = 0; i < urlParts.length; i++) {
                     bookID = bookID.slice(0, -1);
                 }
                 const bookEntry = await getEntry("books", bookID);
-                breadcrumb.title = bookEntry?.data.Title ?? "";
+                breadcrumb.title = bookEntry?.data.title ?? "";
             } else if (collection == 'shelves') {
                 // get tag id from url by slicing `/library/shelves/`
                 let shelfID = Astro.url.pathname.slice(17);
@@ -84,7 +84,7 @@ for (let i = 0; i < urlParts.length; i++) {
                     shelfID = shelfID.slice(0, -1);
                 }
                 const shelfEntry = await getEntry("shelves", shelfID);
-                breadcrumb.title = shelfEntry?.data.Name ?? "";
+                breadcrumb.title = shelfEntry?.data.name ?? "";
             }
         }
     } else if (collection == "pages") {
