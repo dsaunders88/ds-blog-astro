@@ -10,6 +10,8 @@ if (!page) {
     throw new Error("page not found");
 }
 const { Content } = await render(page);
+
+const libraryLinks = await getEntry("siteNavigation", "library");
 ---
 
 <PageWrapper pageID={page.id} pageMeta={getPageMeta(page)}>
@@ -20,9 +22,19 @@ const { Content } = await render(page);
                 <Content />
             </div>
         </PageHeader>
-        <ul class="list-spacer">
-            <li><a href="/library/books">Books</a></li>
-            <li><a href="/library/reviews">Reviews</a></li>
+        <ul class="featured-links | list-spacer" data-list="special">
+            {
+                libraryLinks?.data.links.map((link) => (
+                    <li>
+                        <a class="featured-link" href={link.href}>
+                            <p class="link-title">
+                                {link.title}
+                                <span class="arrow">→</span>
+                            </p>
+                        </a>
+                    </li>
+                ))
+            }
         </ul>
     </div>
 </PageWrapper>

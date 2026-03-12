@@ -13,6 +13,7 @@
 /*** Main */
 /* Components */
 @import "components/book.css" layer(main);
+@import "components/featured-links.css" layer(main);
 @import "components/long-text.css" layer(main);
 @import "components/page.css" layer(main);
 @import "components/post.css" layer(main);

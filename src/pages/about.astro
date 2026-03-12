@@ -96,6 +96,7 @@ const featuredLinks = [
                 featuredLinks.map((link) => (
                     <li>
                         <a
+                            class="featured-link"
                             href={link.href}
                             target={link.external ? "_blank" : "_self"}
                         >
@@ -148,7 +149,7 @@ const featuredLinks = [
         font-weight: var(--font-heading-weight);
     }
 
-    .featured-links {
+    /* .featured-links {
         display: flex;
         flex-wrap: wrap;
         gap: var(--space-s);
@@ -190,13 +191,13 @@ const featuredLinks = [
             margin-inline-start: 0.25rem;
             transition: transform 0.3s ease;
         }
-    }
+    } */
 
-    @media screen and (max-width: 480px) {
+    /* @media screen and (max-width: 480px) {
         .featured-links {
             & > * {
                 flex-basis: 100%;
             }
         }
-    }
+    } */
 </style>

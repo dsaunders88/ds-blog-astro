@@ -33,7 +33,7 @@
         }
     }
 
-    & a:not(.title-link, .image-wrapper) {
+    & a:not(.title-link, .image-wrapper, .featured-link) {
         color: var(--site-accent);
         padding-inline: 4px;
         border-radius: 2px;
