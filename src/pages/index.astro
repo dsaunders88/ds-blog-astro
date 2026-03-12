@@ -27,9 +27,9 @@ const siteNavigation = await getCollection("siteNavigation");
             </p>
             <div class="links | list-spacer | home-grid">
                 {
-                    siteNavigation.map((section) => (
-                        <SiteSection section={section} />
-                    ))
+                    siteNavigation
+                        .sort((a, b) => (a.data.order > b.data.order ? 1 : -1))
+                        .map((section) => <SiteSection section={section} />)
                 }
             </div>
         </header>

@@ -5,10 +5,11 @@ import satori from "satori";
 import sharp from "sharp";
 import { siteDefaults } from "@utils/siteDefaults";
 
-const pages = await getCollection("pages");
+// use only posts for now - this is an expensive operation (~300ms each page)
 const posts = await getCollection("posts");
-const reviews = await getCollection("reviews");
-const allEntries = [...pages, ...posts, ...reviews];
+// const pages = await getCollection("pages");
+// const reviews = await getCollection("reviews");
+const allEntries = [...posts];
 
 export const GET: APIRoute = async ({ params, request }) => {
     const id = params.id;
@@ -129,7 +130,7 @@ export const GET: APIRoute = async ({ params, request }) => {
                 {
                     name: "Kensington",
                     data: await fetch(
-                        `${siteDefaults.domain}/fonts/Kensington-CompressedBlack.woff`
+                        `${siteDefaults.domain}/fonts/Kensington-CompressedBlack.woff`,
                     ).then((res) => res.arrayBuffer()),
                     weight: 900,
                     style: "normal",
@@ -137,7 +138,7 @@ export const GET: APIRoute = async ({ params, request }) => {
                 {
                     name: "Ambra Sans",
                     data: await fetch(
-                        `${siteDefaults.domain}/fonts/Ambra-Sans-Text-Bold.woff`
+                        `${siteDefaults.domain}/fonts/Ambra-Sans-Text-Bold.woff`,
                     ).then((res) => res.arrayBuffer()),
                     weight: 700,
                     style: "normal",
@@ -145,19 +146,19 @@ export const GET: APIRoute = async ({ params, request }) => {
                 {
                     name: "Ambra Sans",
                     data: await fetch(
-                        `${siteDefaults.domain}/fonts/Ambra-Sans-Text-Regular.woff`
+                        `${siteDefaults.domain}/fonts/Ambra-Sans-Text-Regular.woff`,
                     ).then((res) => res.arrayBuffer()),
                     weight: 400,
                     style: "normal",
                 },
             ],
-        }
+        },
     );
 
     const imgBuffer = Buffer.from(svg);
 
     return new Response(
-        await sharp(imgBuffer).resize(1200, 630).png().toBuffer()
+        (await sharp(imgBuffer).resize(1200, 630).png().toBuffer()) as BodyInit,
     );
 };
 

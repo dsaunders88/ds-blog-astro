@@ -2,6 +2,7 @@
   title: Prologue
   numeral: I
   description: Introductions.
+  order: 1
   links:
       - title: About
         href: /about
@@ -11,6 +12,7 @@
   title: Writing
   numeral: II
   description: My writing on various topics.
+  order: 2
   links:
       - title: Latest Posts
         href: /posts
@@ -26,6 +28,7 @@
   title: Library
   numeral: III
   description: Reading activity and reviews.
+  order: 3
   links:
       # - title: Recent Reads
       #   href: /library/activity
@@ -39,6 +42,7 @@
   title: Elsewhere
   numeral: IV
   description: Other projects and websites.
+  order: 4
   links:
       - title: Web Design Studio
         href: https://ds-design-studio.com/
@@ -59,6 +63,7 @@
   title: Appendix
   numeral: V
   description: Final thoughts & addenda.
+  order: 5
   links:
       - title: Colophon
         href: /colophon
