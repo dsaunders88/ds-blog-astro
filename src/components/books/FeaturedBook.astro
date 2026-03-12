@@ -19,24 +19,25 @@ const link = `/library/books/${book?.id}`;
 <article class="featured-book">
     <a class="image-wrapper" href={link}>
         <RemoteImage
-            alt={(book?.data["Full Title"] as string) ?? ""}
+            alt={(book?.data.full_title as string) ?? ""}
             aspectRatio={[6, 9]}
             loading={loading}
-            src={book?.data.Cover?.[0].url ?? ""}
+            src={book?.data.cover?.[0].url ?? ""}
             width={600}
         />
     </a>
     <div class="text-wrapper | flow" data-tempo="allegro">
-        <HeadingLevel
-            class="title"
-            id={v.slugify(book?.data["Full Title"] as string)}
-        >
-            <a class="title-link" href={link}>{book?.data["Full Title"]}</a>
+        <HeadingLevel class="title" id={v.slugify(book?.data.full_title)}>
+            <a class="title-link" href={link}>{book?.data.full_title}</a>
         </HeadingLevel>
-        <p class="author">{book?.data["Full Name (from Author(s))"]}</p>
+        <p class="author">{book?.data.author_refs_name}</p>
         <p class="shelves">
             <strong>Shelves: </strong>
-            {book?.data["Name (from Shelves)"]?.join(", ")}
+            {
+                book?.data.shelf_refs_name
+                    ?.sort((a, b) => (a > b ? 1 : -1))
+                    .join(", ")
+            }
         </p>
     </div>
 </article>

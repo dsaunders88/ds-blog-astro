@@ -1,6 +1,15 @@
-import { defineCollection, reference, z } from "astro:content";
+import { defineCollection, reference } from "astro:content";
+import { z } from "astro/zod";
 import { glob, file } from "astro/loaders";
-import { airtableLoader } from "@ascorbic/airtable-loader";
+import { customAirtableLoader } from "@utils/airtable/customAirtableLoader";
+import {
+    booksMap,
+    booksSchema,
+    convertMapToURLFields,
+    shelvesMap,
+    shelvesSchema,
+} from "@utils/airtable/schemas";
+import { airtableConfig } from "@utils/airtable/config";
 
 const pages = defineCollection({
     loader: glob({
@@ -119,55 +128,32 @@ const siteNavigation = defineCollection({
                 external: z.boolean().nullish(),
             }),
         ),
+        order: z.number(),
     }),
 });
 
 const books = defineCollection({
-    loader: airtableLoader({
-        base: import.meta.env.AIRTABLE_BASE_ID,
-        token: import.meta.env.AIRTABLE_ACCESS_TOKEN,
-        table: import.meta.env.AIRTABLE_BOOKS_TABLE_ID,
-        queryParams: {
-            // returnFieldsByFieldId: true,
-            view: "viwPZ6FZ4LbNs1Qoj", // display books website view
-            fields: [
-                "fldFrLawV5lvpkdSK", // full title
-                "fldeaW5v1d5hDDlct", // title
-                "fldmxfzZCXUAGUK4B", // subtitle
-                "fldzsPiopP5cKIbIZ", // cover
-                "flda7YzOmMCTooNYb", // author full name
-                "fldiE1mbB0w6SFjzL", // shelf reference ids
-                "fldP1f9dAEutLAHAE", // shelf names
-                "fld6QxVFGkyIEtlou", // page count
-                "fldCixuPBT3KpC99I", // own
-                "fld8imscQ6n4ePpxA", // publisher
-                "fldJ7tAYVcCRZdojf", // published date
-                "fldAxNHRZaJVfpJ7K", // edition notes
-                "fldDPLqghVDb9Da9C", // series name
-                "fldq26F61FN59zsYz", // series number
-                "fldsoQcTW4IQTq9qR", // isbn
-                "fldWphBvM79DQ1tIp", // format
-                "fldeOObtVophpWtkI", // open library id
-                "fld8MWfei9oDd7FhY", // open library url
-            ],
-        },
+    loader: customAirtableLoader({
+        // schema
+        tableID: airtableConfig.tableNames.Books,
+        additionalParams: [
+            ...convertMapToURLFields(booksMap),
+            ["view", "viwPZ6FZ4LbNs1Qoj"], // display on web view
+        ],
     }),
+    schema: booksSchema,
 });
 
 const shelves = defineCollection({
-    loader: airtableLoader({
-        base: import.meta.env.AIRTABLE_BASE_ID,
-        token: import.meta.env.AIRTABLE_ACCESS_TOKEN,
-        table: import.meta.env.AIRTABLE_SHELVES_TABLE_ID,
-        queryParams: {
-            fields: [
-                "fldNFgBiC822esCmc", // name
-                "fldJgCN8sJ20NVn1l", // book records
-                "fldPJsO03IBj1yY8q", // number of books (blog)
-            ],
-            sort: [{ field: "Name", direction: "asc" }],
-        },
+    loader: customAirtableLoader({
+        // schema
+        tableID: "tblaPRlCv6E4J4yP9",
+        additionalParams: [
+            ...convertMapToURLFields(shelvesMap),
+            ["view", "viwZVJrFff4uMXeSO"], // sorted view
+        ],
     }),
+    schema: shelvesSchema,
 });
 
 export const collections = {

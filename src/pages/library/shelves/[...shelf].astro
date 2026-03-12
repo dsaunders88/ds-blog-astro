@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 const { shelf } = Astro.props;
 
 const books = await getCollection("books", ({ data }) => {
-    return (data.Shelves as string[])?.includes(shelf.id);
+    return data.shelf_refs?.includes(shelf.id);
 });
 ---
 
@@ -28,7 +28,7 @@ const books = await getCollection("books", ({ data }) => {
         <Breadcrumbs collection="shelves" />
         <PageHeader
             count={books.length}
-            title={shelf.data.Name as string}
+            title={shelf.data.name}
             type="Bookshelf"
         />
         <div class="list-spacer">
@@ -36,6 +36,9 @@ const books = await getCollection("books", ({ data }) => {
                 {
                     books
                         .filter((book) => book.id !== "recpEL2c1NdzAMRbu")
+                        .sort((a, b) =>
+                            a.data.full_title > b.data.full_title ? 1 : -1,
+                        )
                         .map((book) => (
                             <li>
                                 <BookPreview book={book} />

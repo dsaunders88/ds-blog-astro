@@ -52,66 +52,66 @@ for (let i = 0; i < allContent.length; i++) {
 }
 
 const shelves = await getCollection("shelves", ({data}) => {
-    return (data.Books as string[])?.includes(book.id);
+    return data.book_refs?.includes(book.id);
 });
 ---
 
 <PageWrapper pageID={book.id}>
     <div class="content-wrapper paragraph">
         <Breadcrumbs collection="books" />
-        <PageHeader title={book.data["Full Title"] as string} type="Book" />
+        <PageHeader title={book.data.full_title} type="Book" />
         <div class="author">
-            <p>{book.data["Full Name (from Author(s))"]}</p>
+            <p>{book.data.author_refs_name}</p>
         </div>
         <div class="book-data">
             <div class="image-wrapper">
                 <RemoteImage
-                    alt={(book?.data["Full Title"] as string) ?? ""}
+                    alt={book.data.full_title ?? ""}
                     aspectRatio={[6, 9]}
                     loading="eager"
-                    src={book?.data.Cover?.[0].url ?? ""}
+                    src={book.data.cover?.[0].url ?? ""}
                     width={600}
                 />
             </div>
             <div class="text-wrapper">
                 <dl>
                     <dt><strong>Shelves</strong></dt>
-                    <dd>{shelves.map((shelf, idx) => (
-                        <a href={`/library/shelves/${shelf.id}`}>{shelf.data.Name}</a>
+                    <dd>{shelves.sort((a, b) => a.data.name > b.data.name ? 1 : -1).map((shelf, idx) => (
+                        <a href={`/library/shelves/${shelf.id}`}>{shelf.data.name}</a>
                         <Fragment>
                             {idx !== shelves.length - 1 && (
                                 <span class="shelf-comma">, </span>
                             )}
                         </Fragment>
                     ))}</dd>
-                    {book.data["Series Name"] && (
+                    {book.data.series_name && (
                         <dt><strong>Series</strong></dt>
-                        <dd>{`#${book.data["Series Number"]} in ${book.data["Series Name"]}`}</dd>
+                        <dd>{`#${book.data.series_number} in ${book.data.series_name}`}</dd>
                     )}
                     <dt><strong>Pages</strong></dt>
-                    <dd>{book.data["Page Count"]}</dd>
+                    <dd>{book.data.page_count}</dd>
                     <dt><strong>Edition</strong></dt>
                     <dd>
-                        {book.data.Publisher ? `${book.data.Publisher} (${book.data["Published Date"]})` : `${book.data["Published Date"]}`}
+                        {book.data.publisher ? `${book.data.publisher} (${book.data.publish_date})` : `${book.data.publish_date}`}
                     </dd>
-                    {book.data["Edition Notes"] && (
+                    {book.data.edition_notes && (
                         <dt><strong>Edition Notes</strong></dt>
-                        <dd>{book.data["Edition Notes"]}</dd>
+                        <dd>{book.data.edition_notes}</dd>
                     )}
                     <dt><strong>ISBN</strong></dt>
-                    <dd>{book.data.ISBN}</dd>
+                    <dd>{book.data.isbn}</dd>
                     <dt><strong>Format</strong></dt>
-                    <dd>{book.data.Format}</dd>
+                    <dd>{book.data.format}</dd>
                     <dt><strong>Own?</strong></dt>
-                    <dd>{book.data["Own?"] ? "Yes" : "No"}</dd>
-                    {book.data["Open Library URL"] && (
+                    <dd>{book.data.own ? "Yes" : "No"}</dd>
+                    {book.data.open_library_url && (
                         <dt><strong>Open Library</strong></dt>
                         <dd>
                             <a
-                                href={book.data["Open Library URL"]}
+                                href={book.data.open_library_url}
                                 target="_blank"
                             >
-                                {book.data["Open Library ID"] ?? "Link"}
+                                {book.data.open_library_id ?? "Link"}
                             </a>
                         </dd>
                     )}

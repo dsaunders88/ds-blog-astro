@@ -28,21 +28,21 @@ const shelves = await getCollection("shelves");
             <summary>View Shelves Index</summary>
             <ul class="shelves-list | cluster">
                 {
-                    shelves.map((shelf) => (
-                        <li>
-                            <a
-                                class="shelf-link"
-                                href={`/library/shelves/${shelf.id}`}
-                            >
-                                <span>#{shelf.data.Name}</span>
-                            </a>
-                            {shelf.data.Books && (
-                                <sub>
-                                    {shelf.data["Number of Books (Blog)"]}
-                                </sub>
-                            )}
-                        </li>
-                    ))
+                    shelves
+                        .sort((a, b) => (a.data.name > b.data.name ? 1 : -1))
+                        .map((shelf) => (
+                            <li>
+                                <a
+                                    class="shelf-link"
+                                    href={`/library/shelves/${shelf.id}`}
+                                >
+                                    <span>#{shelf.data.name}</span>
+                                </a>
+                                {shelf.data.book_refs && (
+                                    <sub>{shelf.data.book_count}</sub>
+                                )}
+                            </li>
+                        ))
                 }
             </ul>
         </details>
@@ -51,6 +51,9 @@ const shelves = await getCollection("shelves");
                 {
                     books
                         .filter((book) => book.id !== "recpEL2c1NdzAMRbu")
+                        .sort((a, b) =>
+                            a.data.full_title > b.data.full_title ? 1 : -1,
+                        )
                         .map((book) => (
                             <li>
                                 <BookPreview book={book} />

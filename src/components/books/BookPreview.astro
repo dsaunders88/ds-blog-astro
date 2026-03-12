@@ -14,15 +14,15 @@ const link = `/library/books/${book.id}`;
 <article class="book-preview">
     <a class="image-wrapper" href={link}>
         <RemoteImage
-            alt={(book?.data["Full Title"] as string) ?? ""}
+            alt={book.data.full_title ?? ""}
             aspectRatio={[2, 3]}
             loading="lazy"
-            src={book?.data.Cover?.[0].url ?? ""}
+            src={book.data.cover?.[0].url ?? ""}
             width={400}
         />
     </a>
-    <p class="title"><a class="title-link" href={link}>{book.data.Title}</a></p>
-    <p class="author">{book.data["Full Name (from Author(s))"]}</p>
+    <p class="title"><a class="title-link" href={link}>{book.data.title}</a></p>
+    <p class="author">{book.data.author_refs_name}</p>
 </article>
 
 <style>

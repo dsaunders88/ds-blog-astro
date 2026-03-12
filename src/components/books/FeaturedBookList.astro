@@ -1,7 +1,5 @@
 ---
 import BookPreview from "@components/books/BookPreview.astro";
-import { Image } from "astro:assets";
-import RemoteImage from "@components/document/RemoteImage.astro";
 import { getEntries } from "astro:content";
 
 interface Props {
@@ -17,7 +15,7 @@ const books = await getEntries<"books">(
             collection: "books",
             id,
         };
-    })
+    }),
 );
 ---
 
