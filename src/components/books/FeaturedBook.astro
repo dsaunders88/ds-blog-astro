@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import RemoteImage from "@components/document/RemoteImage.astro";
 import { getEntry } from "astro:content";
+import v from "voca";
 
 interface Props {
     id: string;
@@ -26,7 +27,10 @@ const link = `/library/books/${book?.id}`;
         />
     </a>
     <div class="text-wrapper | flow" data-tempo="allegro">
-        <HeadingLevel class="title">
+        <HeadingLevel
+            class="title"
+            id={v.slugify(book?.data["Full Title"] as string)}
+        >
             <a class="title-link" href={link}>{book?.data["Full Title"]}</a>
         </HeadingLevel>
         <p class="author">{book?.data["Full Name (from Author(s))"]}</p>

@@ -10,7 +10,7 @@ const categories = await getCollection("postCategories");
 const tags = await getCollection("postTags");
 ---
 
-<PageWrapper>
+<PageWrapper pageID="posts-taxonomies">
     <div class="content-wrapper paragraph">
         <Breadcrumbs />
         <PageHeader title="Post Taxonomies">
@@ -26,7 +26,7 @@ const tags = await getCollection("postTags");
                     <li><a href="/posts/archive">Archived Posts</a></li>
                 </ul>
             </section>
-            <section aria-labelledby="categories" class="categories">
+            <section aria-labelledby="categories" class="taxonomies | categories">
                 <h2 class="small-title" id="categories">Categories</h2>
                 <ul class="list | cluster">
                     {
@@ -42,7 +42,7 @@ const tags = await getCollection("postTags");
                     }
                 </ul>
             </section>
-            <section aria-labelledby="tags" class="tags">
+            <section aria-labelledby="tags" class="taxonomies | tags">
                 <h2 class="small-title" id="tags">Tags</h2>
                 <ul class="list | cluster">
                     {
@@ -83,7 +83,7 @@ const tags = await getCollection("postTags");
         }
     }
 
-    :global(.page[data-template="posts_taxonomies"] :is(.tag, .post-category)) {
+    :global(.page[data-page="posts-taxonomies"] :is(.tag, .post-category)) {
         font-size: var(--step-0);
     }
 </style>
