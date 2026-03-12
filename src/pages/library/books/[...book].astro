@@ -10,7 +10,7 @@ import { getCollection } from "astro:content";
 export async function getStaticPaths() {
     const books = await getCollection("books");
 
-    return books.map((book) => ({
+    return books.filter((book) => book.id != "recpEL2c1NdzAMRbu").map((book) => ({
         params: {
             book: book.id,
         },
@@ -31,7 +31,8 @@ for (let i = 0; i < allContent.length; i++) {
     // search raw/uncompiled markdown post body and match regexp looking for book id
     // find 17-char string starting with airtable "rec"
     // switch to concatenated value using current `book.id` from dynamic route
-    const regexp = new RegExp('"' + book.id + '"', "g");
+    // find matches either enclosed in double quotes "" (i.e. featured book components) or from url slug (i.e. normal markdown links in body text)
+    const regexp = new RegExp(`"${book.id}"|/library/books/${book.id}`, "g");
     const res = entry.body?.search(regexp);
     if (res !== -1) {
         backlinks.push(entry);
@@ -49,6 +50,10 @@ for (let i = 0; i < allContent.length; i++) {
     }
     */
 }
+
+const shelves = await getCollection("shelves", ({data}) => {
+    return (data.Books as string[])?.includes(book.id);
+});
 ---
 
 <PageWrapper pageID={book.id}>
@@ -71,7 +76,14 @@ for (let i = 0; i < allContent.length; i++) {
             <div class="text-wrapper">
                 <dl>
                     <dt><strong>Shelves</strong></dt>
-                    <dd>{book.data["Name (from Shelves)"]?.join(", ")}</dd>
+                    <dd>{shelves.map((shelf, idx) => (
+                        <a href={`/library/shelves/${shelf.id}`}>{shelf.data.Name}</a>
+                        <Fragment>
+                            {idx !== shelves.length - 1 && (
+                                <span class="shelf-comma">, </span>
+                            )}
+                        </Fragment>
+                    ))}</dd>
                     {book.data["Series Name"] && (
                         <dt><strong>Series</strong></dt>
                         <dd>{`#${book.data["Series Number"]} in ${book.data["Series Name"]}`}</dd>
@@ -148,6 +160,11 @@ for (let i = 0; i < allContent.length; i++) {
             column-gap: 1rem;
             row-gap: var(--space-3xs);
         }
+    }
+
+    .shelf-comma {
+        margin-left: -2px;
+        margin-right: 2px;
     }
 
     @media screen and (max-width: 768px) {

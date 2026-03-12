@@ -15,7 +15,7 @@ import { getCollectionMeta } from "@utils/meta";
 export async function getStaticPaths() {
     const posts = await getCollection(
         "posts",
-        ({ data }) => data.draft != true
+        ({ data }) => data.draft != true,
     );
 
     return posts.map((post) => ({
@@ -45,10 +45,13 @@ for (let i = 0; i < posts.length; i++) {
     // search raw/uncompiled markdown for links beginning with `(/posts/...)` or `"/posts/..."`
     // ["(](\/posts\/\S+)[")]
     // switch to concatenated value using current `post.id` from dynamic route
-    const regexp = new RegExp('["(]/posts/' + post.id + '[")]', "g");
+    const pattern = `\\(\\/posts\\/${post.id.split("/").join("\\/")}(\\S+)?\\)`;
+    const regexp = new RegExp(pattern, "g");
+    // const regexp = new RegExp('["(]/posts/' + post.id + '[")]', "g");
+    // console.log(regexp);
     const res = entry.body?.search(regexp);
     if (res !== -1) {
-        // console.log('MATCHED', res)
+        // console.log("MATCHED", res);
         backlinks.push(entry);
     }
 }
