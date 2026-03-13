@@ -1,0 +1,140 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import Breadcrumbs from "@components/navigation/Breadcrumbs.astro";
+import LinkrollItem from "@components/appendix/LinkrollItem.astro";
+import PageHeader from "@components/document/PageHeader.astro";
+import PageWrapper from "@components/document/PageWrapper.astro";
+import { getPageMeta } from "@utils/meta";
+import v from "voca";
+
+const page = await getEntry("pages", "linkroll");
+if (!page) {
+    throw new Error("page not found");
+}
+const { Content } = await render(page);
+
+const linkroll = await getCollection("linkroll");
+
+const filters = [
+    "all",
+    "blog",
+    "design",
+    "webdev",
+    "portfolio",
+    "podcast",
+    "music",
+];
+---
+
+<PageWrapper pageID={page.id} pageMeta={getPageMeta(page)}>
+    <div class="content-wrapper">
+        <Breadcrumbs />
+        <PageHeader count={linkroll.length} title={page.data.title}>
+            <div class="preview">
+                <Content />
+            </div>
+        </PageHeader>
+        <div class="linkroll-filters">
+            <p>Filter by Topic</p>
+            <div class="cluster">
+                {
+                    filters.map((filter) => (
+                        <button
+                            class:list={[
+                                "filter",
+                                { active: filter === "all" },
+                            ]}
+                            id={filter}
+                        >
+                            {v.titleCase(filter)}
+                        </button>
+                    ))
+                }
+            </div>
+        </div>
+        <ul class="linkroll-list">
+            {
+                linkroll
+                    .sort(() => Math.random() - 0.5)
+                    .map((item) => (
+                        <li>
+                            <LinkrollItem item={item} />
+                        </li>
+                    ))
+            }
+        </ul>
+    </div>
+</PageWrapper>
+
+<style>
+    .linkroll-filters {
+        margin-block-start: var(--space-l);
+        padding-block: var(--space-xs);
+        border-block: 1px solid var(--site-border);
+
+        & p {
+            font-size: var(--step--1);
+            font-weight: 700;
+        }
+
+        & .cluster {
+            margin-block-start: var(--space-xs);
+        }
+    }
+
+    .filter {
+        padding: 0.25rem 0.75rem;
+        color: var(--site-accent);
+        border-radius: 0.25rem;
+        border: 1px solid color-mix(in srgb, var(--site-accent), white 85%);
+        font-size: var(--step--1);
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: color-mix(
+                in srgb,
+                var(--site-accent),
+                transparent 92%
+            );
+        }
+
+        &.active {
+            background-color: var(--site-accent);
+            color: var(--site-text--reverse);
+        }
+    }
+
+    .linkroll-list {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: var(--space-l);
+        column-gap: var(--space-xl);
+        margin-block-start: var(--space-xl);
+    }
+</style>
+
+<script>
+    const list = document.querySelector(".linkroll-list");
+    const listItems = document.querySelectorAll(".linkroll-list li");
+    const filters = document.querySelectorAll(".linkroll-filters button");
+
+    filters.forEach((filter) =>
+        filter.addEventListener("click", () => {
+            filterList(filter.id);
+            filters.forEach((filter) => filter.classList.remove("active"));
+            filter.classList.add("active");
+        }),
+    );
+
+    function filterList(filter: string) {
+        if (filter === "all") {
+            list?.replaceChildren(...listItems);
+        } else {
+            const filtered = [...listItems].filter((item) => {
+                const link = item.querySelector(".linkroll-item");
+                return (link as HTMLElement)?.dataset.tags?.includes(filter);
+            });
+            list?.replaceChildren(...filtered);
+        }
+    }
+</script>

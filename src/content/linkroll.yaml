@@ -1,0 +1,123 @@
+- id: root-simple
+  name: Root Simple
+  href: https://www.rootsimple.com/
+  favicon: https://www.rootsimple.com/wp-content/themes/rootsimple/favicon.ico
+  tags: [blog]
+- id: piccalilli
+  name: Piccalilli
+  href: https://piccalil.li/
+  favicon: https://piccalil.li/favicons/favicon-32x32.png
+  tags: [webdev]
+- id: facilitate
+  name: Facilitate
+  href: https://facilitate.substack.com
+  favicon: https://substackcdn.com/image/fetch/$s_!AgKc!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3fd492cc-9374-4f53-b7f4-ffc07ace5da2%2Fapple-touch-icon-60x60.png
+  tags: [blog]
+- id: eva-decker
+  name: Eva Decker
+  href: https://eva.town/
+  favicon: https://eva.town/favicon-light.png
+  tags: [portfolio, webdev, design]
+- id: currents-of-life
+  name: Currents of Life
+  href: https://currentsoflife.substack.com
+  favicon: https://substackcdn.com/icons/substack/favicon.ico
+  tags: [blog]
+- id: notebook-bd-mcclay
+  name: Notebook - BD McClay
+  href: https://www.notebook.bdmcclay.com
+  favicon: https://substackcdn.com/image/fetch/$s_!RqEd!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F51e7b60f-991b-4254-bc87-0a829ebd413b%2Fapple-touch-icon-60x60.png
+  tags: [blog]
+- id: the-tourist
+  name: The Tourist
+  href: https://philipchristman.substack.com
+  favicon: https://substackcdn.com/icons/substack/favicon.ico
+  tags: [blog]
+- id: leaves-in-the-wind
+  name: Leaves in the Wind
+  href: https://davidbentleyhart.substack.com
+  favicon: https://substackcdn.com/image/fetch/$s_!YVty!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F32ac6826-9095-4876-838c-9901322c457f%2Fapple-touch-icon-60x60.png
+  tags: [blog]
+- id: substudies
+  name: Substudies
+  href: https://jamescrane.substack.com
+  favicon: https://substackcdn.com/image/fetch/$s_!pilC!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F644fede8-4148-4e79-96db-b03961e693ad%2Fapple-touch-icon-60x60.png
+  tags: [blog]
+- id: nic-chan
+  name: Nic Chan
+  href: https://www.nicchan.me
+  favicon: https://www.nicchan.me/favicon.svg
+  tags: [blog, webdev]
+- id: ethan-marcotte
+  name: Ethan Marcotte
+  href: https://ethanmarcotte.com
+  favicon: https://ethanmarcotte.com/ico/icon.svg
+  tags: [blog, design]
+- id: martyn-wendell
+  name: Martyn Wendell Jones
+  href: https://martynwendell.substack.com
+  favicon: https://substackcdn.com/icons/substack/favicon.ico
+  tags: [blog]
+- id: magnificast
+  name: The Magnificast
+  href: https://www.patreon.com/themagnificast
+  favicon: https://c5.patreon.com/external/favicon/rebrand/pwa-192.png?v=af5597c2ef
+  tags: [podcast]
+- id: regrettable-century
+  name: The Regrettable Century
+  href: https://www.patreon.com/cw/theregrettablecentury
+  favicon: https://c5.patreon.com/external/favicon/rebrand/favicon.ico
+  tags: [podcast]
+- id: still-life
+  name: Still Life
+  href: https://mrmichaelwright.substack.com
+  favicon: https://substackcdn.com/icons/substack/favicon.ico
+  tags: [blog]
+- id: robin-rendle
+  name: Robin Rendle
+  href: https://robinrendle.com
+  favicon: https://robinrendle.com/images/favicons5/favicon.svg
+  tags: [blog, design]
+- id: galactic-underworlds
+  name: Galactic Underworlds
+  href: https://beatricemarovich.substack.com
+  favicon: https://substackcdn.com/image/fetch/$s_!_Fzn!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F52c36908-6c71-47c6-b5eb-711f3ffce4f4%2Fapple-touch-icon-60x60.png
+  tags: [blog]
+- id: rachel-d-mark
+  name: Rachel D. Mark
+  href: https://www.racheldmark.com
+  tags: [portfolio]
+- id: small-fools
+  name: Small Fools
+  href: https://www.smallfools.com
+  favicon: https://images.squarespace-cdn.com/content/v1/6031e8ed4da2f359a62dabf9/ce88a87d-abc0-4bb1-a01f-416a84139243/favicon.ico
+  tags: [music]
+- id: mooner
+  name: Mooner
+  href: https://mooner.bandcamp.com
+  favicon: https://s4.bcbits.com/client-bundle/1/PageLayout_1/favicon-78ff127104384a042453aca8d73be7dc.static/favicon/favicon-32x32.png
+  tags: [music]
+- id: steve-slagg
+  name: Steve Slagg
+  href: https://steveslagg.bandcamp.com
+  favicon: https://s4.bcbits.com/client-bundle/1/PageLayout_1/favicon-78ff127104384a042453aca8d73be7dc.static/favicon/favicon-32x32.png
+  tags: [music]
+- id: little-systems
+  name: Little Systems
+  href: https://littlesystemsmusic.com
+  tags: [music]
+- id: steve-woodson
+  name: Steve Woodson
+  href: https://stevenwoodson.com
+  favicon: https://stevenwoodson.com/assets/images/favicon/favicon-32x32.png
+  tags: [blog, webdev]
+- id: a-working-library
+  name: A Working Library
+  href: https://aworkinglibrary.com
+  favicon: https://aworkinglibrary.com/img/pilcrow.svg
+  tags: [blog]
+- id: destroy-today
+  name: Destroy Today
+  href: https://destroytoday.com
+  favicon: https://destroytoday.com/favicon.png
+  tags: [blog, design, webdev]

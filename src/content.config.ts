@@ -132,6 +132,28 @@ const siteNavigation = defineCollection({
     }),
 });
 
+const linkroll = defineCollection({
+    loader: file("./src/content/linkroll.yaml"),
+    schema: z.object({
+        name: z.string(),
+        href: z.url(),
+        favicon: z.url().optional(),
+        description: z.string().optional(),
+        tags: z
+            .array(
+                z.enum([
+                    "blog",
+                    "design",
+                    "webdev",
+                    "portfolio",
+                    "podcast",
+                    "music",
+                ]),
+            )
+            .optional(),
+    }),
+});
+
 const books = defineCollection({
     loader: customAirtableLoader({
         // schema
@@ -163,6 +185,7 @@ export const collections = {
     postTags,
     reviews,
     siteNavigation,
+    linkroll,
     books,
     shelves,
     updates,

@@ -1,0 +1,64 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    item: CollectionEntry<"linkroll">;
+}
+
+const { item } = Astro.props;
+---
+
+<div class="linkroll-item" data-tags={item.data.tags?.join(",")}>
+    <p class="title | cluster">
+        <a class="title-link" href={item.data.href} target="_blank"
+            >{item.data.name}</a
+        >
+        <img
+            alt=""
+            class="favicon"
+            decoding="auto"
+            height="28"
+            loading="lazy"
+            src={item.data.favicon}
+            style={`--bg-color: ${item.data.favicon ? "transparent" : "var(--site-accent)"}`}
+            width="28"
+        />
+    </p>
+    <div class="tags | cluster">
+        {
+            item.data.tags &&
+                item.data.tags.length > 0 &&
+                item.data.tags.map((tag) => (
+                    <span class="tag">{`#${tag}`}</span>
+                ))
+        }
+    </div>
+</div>
+
+<style>
+    .title {
+        --cluster-space: 0.75rem;
+        font-family: var(--font-heading);
+        font-weight: var(--font-heading-weight);
+        font-size: var(--step-2);
+    }
+
+    :is(.favicon, .favicon-placeholder) {
+        width: 28px;
+        height: 28px;
+        object-fit: scale-down;
+        border-radius: 999px;
+        background-color: var(--bg-color);
+        border: 1px solid var(--site-border);
+    }
+
+    .tags {
+        --cluster-space: var(--space-2xs);
+        /* padding-inline-start: calc(32px + 1rem); */
+        /* margin-block-start: 0.25rem; */
+    }
+
+    .tag {
+        font-size: var(--step--1);
+    }
+</style>
