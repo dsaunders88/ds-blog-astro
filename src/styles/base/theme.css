@@ -1,4 +1,6 @@
 :root {
+    color-scheme: light;
+
     --color-primary: rgb(0, 125, 146); /* #007d91; */
     --color-parchment: rgb(249, 248, 244); /*#f6f1ea;*/
     --color-parchment-light: #fbf7f1;
@@ -30,10 +32,56 @@
     --sidebar-transition: all 0.2s ease-in-out;
 }
 
+.dark-theme {
+    color-scheme: dark;
+
+    --color-primary: rgb(15, 183, 202);
+    /* --color-parchment: rgb(249, 248, 244); */
+    /* --color-parchment-light: rgb(230, 228, 220); */
+    --color-parchment-dark: color-mix(
+        in srgb,
+        var(--color-neutral-dark),
+        white 10%
+    );
+    /* --color-neutral-dark: rgb(39, 38, 36); */
+
+    --site-text: var(--color-parchment);
+    --site-text--heading: var(--color-primary);
+    --site-text--reverse: var(--color-neutral-dark);
+    /* --site-accent: var(--color-primary); */
+    --site-bg: var(--color-neutral-dark);
+    --site-panel-bg: var(--color-parchment-light);
+    --site-tooltip-bg: var(--color-neutral-dark);
+    /* --site-border: var(--color-parchment-dark); */
+
+    & body {
+        background: linear-gradient(
+            to bottom right,
+            color-mix(in srgb, var(--site-bg), black 30%),
+            var(--site-bg)
+                /* var(--site-bg) 80%,
+            color-mix(in srgb, var(--site-bg), black 30%) */
+        );
+    }
+
+    & img {
+        filter: brightness(0.85);
+    }
+
+    & a {
+        text-decoration-color: color-mix(
+            in srgb,
+            var(--site-text),
+            transparent 55%
+        );
+    }
+}
+
 body {
     color: var(--site-text);
     background-color: var(--site-bg);
-    background: linear-gradient(
+    background:
+        linear-gradient(
             to right,
             color-mix(in srgb, var(--site-bg), transparent 93%),
             var(--site-bg) 20%,
@@ -50,7 +98,8 @@ body {
 
 @media screen and (max-width: 640px) {
     body {
-        background: linear-gradient(
+        background:
+            linear-gradient(
                 to right,
                 color-mix(in srgb, var(--site-bg), transparent 90%),
                 var(--site-bg) 10%,

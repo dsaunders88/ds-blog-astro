@@ -53,24 +53,48 @@ const { backlinks, type = "posts" } = Astro.props;
         padding: 0.65rem 1rem 0.75rem;
         text-decoration-color: transparent;
         border-radius: var(--rounded-xs);
-        border: 1px solid color-mix(in srgb, var(--site-accent), white 85%);
-        background-color: color-mix(
-            in srgb,
-            var(--site-accent),
-            transparent 92%
+        border: 1px solid
+            var(
+                --backlink-border,
+                color-mix(in srgb, var(--site-accent), white 85%)
+            );
+        background: var(
+            --backlink-bg,
+            color-mix(in srgb, var(--site-accent), transparent 92%)
         );
         font-size: var(--step--1);
         color: var(--site-accent);
         transition: all 0.2s ease;
 
         &:hover {
-            background-color: transparent;
-            border-color: color-mix(in srgb, var(--site-accent), white 80%);
+            background-color: var(--backlink-bg-hover, transparent);
+            border-color: var(
+                --backlink-border-hover,
+                color-mix(in srgb, var(--site-accent), white 80%)
+            );
 
             & .link-title {
                 text-decoration-color: var(--site-accent);
                 text-underline-offset: 5px;
             }
+        }
+    }
+
+    :global(.dark-theme .backlink) {
+        --backlink-border: color-mix(in srgb, var(--site-accent), black 70%);
+        --backlink-border-hover: color-mix(
+            in srgb,
+            var(--site-accent),
+            black 45%
+        );
+        --backlink-bg: linear-gradient(
+            to bottom right,
+            color-mix(in srgb, var(--color-neutral-dark), black 30%),
+            color-mix(in srgb, var(--site-accent), black 85%)
+        );
+
+        & .link-title {
+            color: var(--site-text);
         }
     }
 

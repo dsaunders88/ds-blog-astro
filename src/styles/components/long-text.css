@@ -102,6 +102,17 @@
     }
 }
 
+.dark-theme .long-text {
+    & a:not(.title-link, .image-wrapper, .featured-link) {
+        background-color: transparent;
+        text-decoration-color: color-mix(
+            in srgb,
+            var(--site-accent),
+            transparent 35%
+        );
+    }
+}
+
 @media screen and (max-width: 860px) {
     .long-text {
         & > * {

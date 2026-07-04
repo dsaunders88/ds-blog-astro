@@ -8,7 +8,7 @@ const siteNavigation = await getCollection("siteNavigation");
 ---
 
 <PageWrapper>
-    <div class="content-wrapper">
+    <div class="content-wrapper | home">
         <nav class="breadcrumbs">
             <a href="/">Index</a>
         </nav>
@@ -66,6 +66,22 @@ const siteNavigation = await getCollection("siteNavigation");
     .breadcrumbs {
         font-size: var(--step--1);
         margin-block-start: var(--space-xs);
+    }
+
+    :global(.dark-theme .home .title) {
+        background: linear-gradient(
+            to right,
+            var(--site-text--heading),
+            #f500ac
+        );
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        width: fit-content;
+    }
+
+    :global(.dark-theme .home h2) {
+        color: var(--site-text);
     }
 
     @media screen and (max-width: 800px) {

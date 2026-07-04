@@ -39,6 +39,10 @@ const { title, preview, count, type } = Astro.props;
         margin-block-end: var(--space-3xs);
     }
 
+    :global(.dark-theme .eyebrow) {
+        color: var(--site-text);
+    }
+
     .with-count {
         & h1 {
             display: inline-block;

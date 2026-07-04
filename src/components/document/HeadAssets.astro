@@ -112,6 +112,35 @@
         font-display: swap;
     }
 </style>
+<script is:inline>
+    const storedTheme = localStorage.getItem("ds-theme");
+    const prefersDarkMode = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+    ).matches;
+
+    // set initial theme
+    if (storedTheme == "dark" || (!storedTheme && prefersDarkMode)) {
+        document.documentElement.classList.add("dark-theme");
+        localStorage.setItem("ds-theme", "dark");
+    } else {
+        document.documentElement.classList.remove("dark-theme");
+        localStorage.setItem("ds-theme", "light");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const themeSwitch = document.querySelector("#themeSwitch");
+        const themeSwitchText = themeSwitch.querySelector("span");
+
+        if (storedTheme == "dark" || (!storedTheme && prefersDarkMode)) {
+            themeSwitchText.textContent = "Blackboard";
+        } else {
+            themeSwitchText.textContent = "Paper";
+        }
+    });
+</script>
 <!-- Fathom - beautiful, simple website analytics -->
-<script data-site="DMOAPCNG" defer src="https://cdn.usefathom.com/script.js"
-></script>
+<script
+    data-site="DMOAPCNG"
+    defer
+    is:inline
+    src="https://cdn.usefathom.com/script.js"></script>

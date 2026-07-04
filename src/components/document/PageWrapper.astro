@@ -24,6 +24,12 @@ const now = new Date();
     >
         <slot />
     </main>
+    <div class="theme-wrapper">
+        <button id="themeSwitch">
+            <strong>Toggle Theme:</strong>
+            <span>Paper</span>
+        </button>
+    </div>
     <footer class="site-footer">
         <span
             >© {now.getFullYear()}, Daniel Saunders. 100% human-generated
@@ -46,4 +52,76 @@ const now = new Date();
         padding-inline: var(--gutter-spacing);
         margin-block-end: var(--space-s);
     }
+
+    .theme-wrapper {
+        margin-inline: auto;
+        margin-block: calc(var(--gutter-spacing) / 2);
+        padding-inline: var(--gutter-spacing);
+        font-size: var(--step--1);
+        text-align: center;
+
+        & button {
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--rounded-xs);
+            color: var(--site-accent);
+            border: 1px solid
+                var(
+                    --theme-switch-border,
+                    color-mix(in srgb, var(--site-accent), white 85%)
+                );
+            background: var(
+                --theme-switch-bg,
+                color-mix(in srgb, var(--site-accent), transparent 92%)
+            );
+            transition: 0.1s;
+
+            &:hover {
+                border-color: var(
+                    --theme-switch-border-hover,
+                    color-mix(in srgb, var(--site-accent), white 80%)
+                );
+                background: var(--theme-switch-bg-hover, inherit);
+            }
+        }
+    }
+
+    :global(.dark-theme .theme-wrapper button) {
+        --theme-switch-border: color-mix(
+            in srgb,
+            var(--site-accent),
+            black 70%
+        );
+        --theme-switch-border-hover: color-mix(
+            in srgb,
+            var(--site-accent),
+            black 45%
+        );
+        --theme-switch-bg: linear-gradient(
+            to bottom right,
+            color-mix(in srgb, var(--color-neutral-dark), black 30%),
+            color-mix(in srgb, var(--site-accent), black 85%)
+        );
+    }
 </style>
+
+<script>
+    const themeSwitch = document.querySelector("#themeSwitch")!;
+    const themeSwitchText = themeSwitch.querySelector("span")!;
+
+    themeSwitch?.addEventListener("click", () => {
+        const currentTheme = localStorage.getItem("ds-theme");
+        switchTheme(currentTheme);
+    });
+
+    function switchTheme(current: string | null) {
+        if (current == "dark") {
+            document.documentElement.classList.remove("dark-theme");
+            localStorage.setItem("ds-theme", "light");
+            themeSwitchText.textContent = "Paper";
+        } else {
+            document.documentElement.classList.add("dark-theme");
+            localStorage.setItem("ds-theme", "dark");
+            themeSwitchText.textContent = "Blackboard";
+        }
+    }
+</script>

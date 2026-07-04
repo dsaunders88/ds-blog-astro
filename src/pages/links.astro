@@ -68,6 +68,7 @@ const filters = [
 
 <style>
     .linkroll-filters {
+        --cluster-space: var(--space-xs);
         margin-block-start: var(--space-l);
         padding-block: var(--space-xs);
         border-block: 1px solid var(--site-border);
@@ -84,24 +85,31 @@ const filters = [
 
     .filter {
         padding: 0.25rem 0.75rem;
-        color: var(--site-accent);
+        color: var(--filter-color, var(--site-accent));
         border-radius: 0.25rem;
-        border: 1px solid color-mix(in srgb, var(--site-accent), white 85%);
+        border: 1px solid
+            var(
+                --filter-border,
+                color-mix(in srgb, var(--site-accent), white 85%)
+            );
         font-size: var(--step--1);
         transition: background-color 0.2s;
 
         &:hover {
-            background-color: color-mix(
-                in srgb,
-                var(--site-accent),
-                transparent 92%
+            background-color: var(
+                --filter-bg-hover,
+                color-mix(in srgb, var(--site-accent), transparent 92%)
             );
         }
 
         &.active {
-            background-color: var(--site-accent);
+            background-color: var(--filter-bg--active, var(--site-accent));
             color: var(--site-text--reverse);
         }
+    }
+
+    :global(.dark-theme .linkroll-filters .filter) {
+        --filter-border: color-mix(in srgb, var(--site-accent), black 70%);
     }
 
     .linkroll-list {

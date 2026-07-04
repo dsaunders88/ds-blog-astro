@@ -1,5 +1,6 @@
 ---
 import "@styles/site.css";
+import { ClientRouter } from "astro:transitions";
 import HeadAssets from "@components/document/HeadAssets.astro";
 import HeadMeta from "@components/document/HeadMeta.astro";
 import type { PageMeta } from "@utils/types";
@@ -22,6 +23,7 @@ const { pageMeta } = Astro.props;
             openGraph={pageMeta?.openGraph}
         />
         <HeadAssets />
+        <!-- <ClientRouter /> -->
     </head>
     <body>
         <slot />
