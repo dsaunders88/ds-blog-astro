@@ -30,8 +30,8 @@
   description: Reading activity and reviews.
   order: 3
   links:
-      # - title: Recent Reads
-      #   href: /library/activity
+      - title: Recent Reads
+        href: /library/activity
       - title: Books
         href: /library/books
       - title: Shelves

@@ -13,10 +13,10 @@
   href: https://facilitate.substack.com
   favicon: https://substackcdn.com/image/fetch/$s_!AgKc!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3fd492cc-9374-4f53-b7f4-ffc07ace5da2%2Fapple-touch-icon-60x60.png
   tags: [blog]
-- id: eva-decker
-  name: Eva Decker
-  href: https://eva.town/
-  favicon: https://eva.town/favicon-light.png
+- id: ky-decker
+  name: Ky Decker
+  href: https://ky.fyi/
+  favicon: https://ky.fyi/favicon.svg
   tags: [portfolio, webdev, design]
 - id: currents-of-life
   name: Currents of Life
@@ -121,3 +121,8 @@
   href: https://destroytoday.com
   favicon: https://destroytoday.com/favicon.png
   tags: [blog, design, webdev]
+- id: the-late-review
+  name: The Late Review
+  href: https://www.late-review.com
+  favicon: https://substackcdn.com/icons/substack/favicon.ico
+  tags: [blog]

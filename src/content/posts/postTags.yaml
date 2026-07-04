@@ -22,6 +22,8 @@
   title: Religion
 - id: reading
   title: Reading
+- id: review
+  title: Review
 - id: science
   title: Science
 - id: theory

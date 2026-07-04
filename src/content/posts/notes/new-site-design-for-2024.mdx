@@ -27,9 +27,9 @@ Although I have always striven to realize many of these elements in my designs, 
 
 I also want to shout out some of the inspirations for this site. There are a lot of cool people out there making some very cool personal sites. Go check them out!
 
--   [Robin Rendle](https://robinrendle.com/) — A prolific writer and "designer's designer"; I especially love Robin's idea of the conscientious designer/developer as being an independent _publisher_ for the web.
--   [Dave Smyth](https://davesmyth.com/) — I love Dave's minimalism and focus on typography, and how both of these serve to foreground the meaning of the message being conveyed.
--   [Ryan Mulligan](https://ryanmulligan.dev/) — Ryan's CSS mastery is a source of boundless fascination and desire to do other cool things with what might be the coolest language for the web at the moment.
+- [Robin Rendle](https://robinrendle.com/) — A prolific writer and "designer's designer"; I especially love Robin's idea of the conscientious designer/developer as being an independent _publisher_ for the web.
+- [Dave Smyth](https://davesmyth.com/) — I love Dave's minimalism and focus on typography, and how both of these serve to foreground the meaning of the message being conveyed.
+- [Ryan Mulligan](https://ryanmulligan.dev/) — Ryan's CSS mastery is a source of boundless fascination and desire to do other cool things with what might be the coolest language for the web at the moment.
 
 ## The Site
 
@@ -37,10 +37,10 @@ I used [Lume](https://lume.land/) to build this site, a static site generator (S
 
 The last version of my site was built with [11ty](https://www.11ty.dev/), which is also a fantastic SSG, and there were definitely some tradeoffs involved in making the switch (one thing I'm ambivalent about at the moment is having to use Deno Deploy to host the site). But I enjoyed working with Lume for a handful of reasons:
 
--   No npm or `node-modules` folders, just clean, built-in solutions and plugins.
--   Speaking of plugins, there are some [great options](https://lume.land/plugins/?status=all) for Lume that are really painless to use. From building RSS feeds and navigation trees to minifying HTML and transforming images, Lume has everything I needed right at hand without reaching for another package or library.
--   Óscar has also created a templating language called [Vento](https://vento.js.org/) that is a lot like Nunjucks or Liquid, but in my opinion is far easier to comprehend and use (well done, Óscar!). I love that in Vento you can do everything you'd ever want to with a templating language but also dip into JavaScript at any time by doing something like this: `> console.log("Lume is great!")`.
--   Lume's built-in `search` function is also kind of a game-changer in the static site world. This function basically lets you query data of any format in your project to create filterable, sortable collections on the fly. Paired with Vento, you can do some pretty powerful things with it, as for instance in the below example where I'm using a JavaScript function to group an array of objects by a shared property value, then piping a search query for all my posts through it with the `|>` operator. The result is a grouped and sorted list of posts archived by year.
+- No npm or `node-modules` folders, just clean, built-in solutions and plugins.
+- Speaking of plugins, there are some [great options](https://lume.land/plugins/?status=all) for Lume that are really painless to use. From building RSS feeds and navigation trees to minifying HTML and transforming images, Lume has everything I needed right at hand without reaching for another package or library.
+- Óscar has also created a templating language called [Vento](https://vento.js.org/) that is a lot like Nunjucks or Liquid, but in my opinion is far easier to comprehend and use (well done, Óscar!). I love that in Vento you can do everything you'd ever want to with a templating language but also dip into JavaScript at any time by doing something like this: `> console.log("Lume is great!")`.
+- Lume's built-in `search` function is also kind of a game-changer in the static site world. This function basically lets you query data of any format in your project to create filterable, sortable collections on the fly. Paired with Vento, you can do some pretty powerful things with it, as for instance in the below example where I'm using a JavaScript function to group an array of objects by a shared property value, then piping a search query for all my posts through it with the `|>` operator. The result is a grouped and sorted list of posts archived by year.
 
 <CodeBlock title="src/_includes/layouts/archive.vto">
 
@@ -62,10 +62,10 @@ The last version of my site was built with [11ty](https://www.11ty.dev/), which 
 
 A new design was also a chance to make a bunch of improvements to the site's organization, content, and overall code. Some of this was just a result of experience and wanting to do things in more efficient and sensible ways, and some was wanting to pare down and clean up some detritus that had accumulated over time.
 
--   **Posts.** I went through every Markdown file for every post and page, cleaning up a bunch of extraneous material and standardizing frontmatter (why did I once decide to use `<a>` tags for links instead of using Markdown's link syntax??). It was a huge pain, but it feels good to have everything unified.
--   **Categories.** I also simplified post categories and added a year by year archive.
--   **Styling.** The last version of my site was designed a few years ago and thus was part of the Tailwind CSS craze. Back then I wanted to try it to see what all the hype was about, and it was mostly fine. But at some point in the last year that whole world became really tiresome to me, and I started to see how much of an annoyance it is to maintain Tailwind code. Not to mention that _you don't get to write CSS_, which is having a genuine renaissance right now. So early on in this redesign/rebuild, I decided to ditch Tailwind, and boy was that a huge dam released on my creative process. Paired with [LightningCSS](https://lightningcss.dev/) as an optimizer, this site's CSS feels really powerful.
--   **Projects.** Like anyone in my position, I had been maintaining a few different sites for my portfolio, writing, etc. That wasn't ideal, and for this site I knew I wanted to combine those aspects and incorporate some of my freelance work here. The [projects page](/projects) has a list of selected recent projects that I'm particularly proud of.
+- **Posts.** I went through every Markdown file for every post and page, cleaning up a bunch of extraneous material and standardizing frontmatter (why did I once decide to use `<a>` tags for links instead of using Markdown's link syntax??). It was a huge pain, but it feels good to have everything unified.
+- **Categories.** I also simplified post categories and added a year by year archive.
+- **Styling.** The last version of my site was designed a few years ago and thus was part of the Tailwind CSS craze. Back then I wanted to try it to see what all the hype was about, and it was mostly fine. But at some point in the last year that whole world became really tiresome to me, and I started to see how much of an annoyance it is to maintain Tailwind code. Not to mention that _you don't get to write CSS_, which is having a genuine renaissance right now. So early on in this redesign/rebuild, I decided to ditch Tailwind, and boy was that a huge dam released on my creative process. Paired with [LightningCSS](https://lightningcss.dev/) as an optimizer, this site's CSS feels really powerful.
+- **Projects.** Like anyone in my position, I had been maintaining a few different sites for my portfolio, writing, etc. That wasn't ideal, and for this site I knew I wanted to combine those aspects and incorporate some of my freelance work here. The [projects page](/projects) has a list of selected recent projects that I'm particularly proud of.
 
 ## Highlights and Fun Stuff
 
@@ -78,8 +78,6 @@ As mentioned above, the CSS for the site is living on the cutting-edge, and it's
 One of the major styling features is not only a light/dark/system theme toggler, but an accent color toggler that enables you to cycle through a total of 10 different color schemes. The theme toggles use the native `details` HTML element, which means no JavaScript needed. I love how this turned out! There are lots of other fun little CSS moments and animations throughout the site as well.
 
 ### Books
-
-![Section of my new site showing book covers from my latest reading activity.](../../../assets/posts/ds-site-books.jpg)
 
 I have incorporated elements of my [Airtable reading tracker](/posts/tutorials/airtable-reading-tracker-frontend) into the site—on the home page, I'm fetching some of my latest reading activity records to show a glance at my bookshelf. These entries pull data from Airtable, and, as a bonus, link to the associated books in the [counterpart website](https://long-wasp-15.deno.dev/), which I'm continuing to build out.
 
