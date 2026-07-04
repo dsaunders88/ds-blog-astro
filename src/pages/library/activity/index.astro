@@ -1,0 +1,94 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import Breadcrumbs from "@components/navigation/Breadcrumbs.astro";
+import PageHeader from "@components/document/PageHeader.astro";
+import PageWrapper from "@components/document/PageWrapper.astro";
+import type { ReadingActivity } from "@utils/types";
+import ReadingActivityCollection from "@components/books/ReadingActivityCollection.svelte";
+import { getImage } from "astro:assets";
+import { getPageMeta } from "@utils/meta";
+import { isBefore } from "@formkit/tempo";
+
+const page = await getEntry("pages", "activity-index");
+if (!page) {
+    throw new Error("page not found");
+}
+const { Content } = await render(page);
+
+const activity = await getCollection("readingActivity");
+const books = await getCollection("books");
+
+// import glob of all book covers to dynamically set with book id
+const coverImages = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/book-covers/*.{jpeg,jpg,png}",
+    { eager: true },
+);
+
+// build map of activity + book refs, using getImage for cover and pass this one list to client framework
+// set initial sort as most recent feed date
+const activityWithBooks: ReadingActivity[] = await Promise.all(
+    activity
+        .sort((a, b) => (isBefore(a.data.feed_date, b.data.feed_date) ? 1 : -1))
+        .map(async (item) => {
+            const book = books.find((book) =>
+                item.data.book_refs.includes(book.id),
+            );
+            const coverImageFile =
+                coverImages[`/src/assets/book-covers/${book!.id}.jpg`];
+            let coverImage;
+            if (coverImageFile) {
+                coverImage = await getImage({
+                    alt: book!.data.full_title,
+                    src: coverImageFile.default,
+                    format: "webp",
+                    width: 300,
+                    height: 450,
+                });
+            }
+            return {
+                id: item.id,
+                status: item.data.status,
+                date_started: item.data.date_started,
+                date_finished: item.data.date_finished,
+                feed_date: item.data.feed_date,
+                pages_read: item.data.pages_read,
+                percent_read: item.data.percent_read,
+                weeks_read: item.data.weeks_read,
+                finished: item.data.finished,
+                note: item.data.note,
+                book_refs: item.data.book_refs,
+                book: {
+                    id: book!.id,
+                    title: book!.data.title,
+                    subtitle: book!.data.subtitle,
+                    cover: coverImage ?? undefined,
+                    author: book!.data.author_refs_name,
+                    page_count: book!.data.page_count,
+                },
+            };
+        }),
+);
+---
+
+<PageWrapper pageID={page.id} pageMeta={getPageMeta(page)}>
+    <div class="content-wrapper">
+        <Breadcrumbs />
+        <PageHeader count={activity.length} title={page.data.title}>
+            <div class="preview">
+                <Content />
+            </div>
+        </PageHeader>
+        <div class="activity__wrapper">
+            <ReadingActivityCollection
+                activityItems={activityWithBooks}
+                client:load
+            />
+        </div>
+    </div>
+</PageWrapper>
+
+<style>
+    .activity__wrapper {
+        margin-block-start: var(--space-xl);
+    }
+</style>

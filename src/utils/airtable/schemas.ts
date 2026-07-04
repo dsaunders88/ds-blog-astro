@@ -6,6 +6,33 @@ import {
 } from "./config";
 
 /** SCHEMAS */
+export const activitySchema = z.object({
+    book_refs: z.array(z.string()),
+    status: z.enum(["Read Next", "Currently Reading", "Have Read"]),
+    date_started: z.coerce.date().optional(),
+    date_finished: z.coerce.date().optional(),
+    feed_date: z.coerce.date(),
+    pages_read: z.number().optional(),
+    percent_read: z.number().optional(),
+    weeks_read: z.number().optional(),
+    finished: z.coerce.boolean(),
+    note: z.string().optional(),
+});
+
+export type ActivitySchema = z.infer<typeof activitySchema>;
+
+export const activityMap = new Map<string, { label: string }>([
+    ["fldlmF45gCYW23PLI", { label: "book_refs" }],
+    ["fldCEvxZzmoChJ5Dh", { label: "status" }],
+    ["fldIVAy1LGdKLaxbw", { label: "date_started" }],
+    ["fldIwqgbD7kf7N8qD", { label: "date_finished" }],
+    ["fldpzGGsP5bR1hUAW", { label: "feed_date" }],
+    ["fldLUYiRTofMoDhO4", { label: "pages_read" }],
+    ["fldKM2VLezO00lQHI", { label: "percent_read" }],
+    ["fld1sg0p9VvabKQDP", { label: "weeks_read" }],
+    ["fldrVnT1VwFBvC6TM", { label: "finished" }],
+    ["fldWiWpgEVPwf0OrA", { label: "note" }],
+]);
 
 /** Books schema */
 export const booksSchema = z.object({
@@ -28,6 +55,8 @@ export const booksSchema = z.object({
     open_library_id: z.string().optional(),
     open_library_url: z.string().optional(),
 });
+
+export type BookSchema = z.infer<typeof booksSchema>;
 
 export const booksMap = new Map<string, { label: string }>([
     ["fldFrLawV5lvpkdSK", { label: "full_title" }],

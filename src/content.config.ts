@@ -3,6 +3,8 @@ import { z } from "astro/zod";
 import { glob, file } from "astro/loaders";
 import { customAirtableLoader } from "@utils/airtable/customAirtableLoader";
 import {
+    activityMap,
+    activitySchema,
     booksMap,
     booksSchema,
     convertMapToURLFields,
@@ -154,6 +156,17 @@ const linkroll = defineCollection({
     }),
 });
 
+const readingActivity = defineCollection({
+    loader: customAirtableLoader({
+        tableID: airtableConfig.tableNames.Activity,
+        additionalParams: [
+            ...convertMapToURLFields(activityMap),
+            ["view", "viwkxrkFzWOiao8TP"], // all activity for website
+        ],
+    }),
+    schema: activitySchema,
+});
+
 const books = defineCollection({
     loader: customAirtableLoader({
         // schema
@@ -186,6 +199,7 @@ export const collections = {
     reviews,
     siteNavigation,
     linkroll,
+    readingActivity,
     books,
     shelves,
     updates,

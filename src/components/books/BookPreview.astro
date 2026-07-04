@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import RemoteImage from "@components/document/RemoteImage.astro";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 interface Props {
     book: CollectionEntry<"books">;
@@ -9,17 +10,28 @@ interface Props {
 const { book } = Astro.props;
 
 const link = `/library/books/${book.id}`;
+
+// import glob of all book covers to dynamically set with book id
+const coverImages = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/book-covers/*.{jpeg,jpg,png}",
+    { eager: true },
+);
+const coverImage = coverImages[`/src/assets/book-covers/${book.id}.jpg`];
 ---
 
 <article class="book-preview">
     <a class="image-wrapper" href={link}>
-        <RemoteImage
-            alt={book.data.full_title ?? ""}
-            aspectRatio={[2, 3]}
-            loading="lazy"
-            src={book.data.cover?.[0].url ?? ""}
-            width={400}
-        />
+        {
+            coverImage && (
+                <Image
+                    alt={book.data.full_title ?? ""}
+                    format="webp"
+                    height={600}
+                    src={coverImage.default}
+                    width={400}
+                />
+            )
+        }
     </a>
     <p class="title"><a class="title-link" href={link}>{book.data.title}</a></p>
     <p class="author">{book.data.author_refs_name}</p>

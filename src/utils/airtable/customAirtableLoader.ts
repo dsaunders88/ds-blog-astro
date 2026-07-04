@@ -5,7 +5,12 @@ import {
     type AirtableRecord,
 } from "./config";
 import { fetchFromAirtable } from "./fetch";
-import { booksMap, convertMapIDsToLabels, shelvesMap } from "./schemas";
+import {
+    activityMap,
+    booksMap,
+    convertMapIDsToLabels,
+    shelvesMap,
+} from "./schemas";
 
 interface AirtableLoaderOptions {
     /** table name or ID */
@@ -62,7 +67,10 @@ export function customAirtableLoader({
             switch (tableID) {
                 case "tblr6UI7PA9ETQlOg":
                     // activity
-                    // todo: add convertMapIDsToLabels()
+                    transformed = convertMapIDsToLabels(
+                        activityMap,
+                        allRecords,
+                    );
                     break;
                 case "tbliOPSxi5cCB1Lku":
                     // books

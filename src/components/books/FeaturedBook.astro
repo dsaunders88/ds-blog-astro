@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import RemoteImage from "@components/document/RemoteImage.astro";
+import type { ImageMetadata } from "astro";
 import { getEntry } from "astro:content";
 import v from "voca";
 
@@ -14,17 +14,29 @@ const { id, HeadingLevel = "h3", loading = "lazy" } = Astro.props;
 
 const book = await getEntry("books", id);
 const link = `/library/books/${book?.id}`;
+
+const coverImages = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/book-covers/*.{jpeg,jpg,png}",
+    { eager: true },
+);
+const coverImage = coverImages[`/src/assets/book-covers/${id}.jpg`];
 ---
 
 <article class="featured-book">
     <a class="image-wrapper" href={link}>
-        <RemoteImage
-            alt={(book?.data.full_title as string) ?? ""}
-            aspectRatio={[6, 9]}
-            loading={loading}
-            src={book?.data.cover?.[0].url ?? ""}
-            width={600}
-        />
+        {
+            coverImage && (
+                <Image
+                    alt={book?.data.full_title ?? ""}
+                    decoding={loading == "lazy" ? "async" : "auto"}
+                    format="webp"
+                    height={900}
+                    loading={loading}
+                    src={coverImage.default}
+                    width={600}
+                />
+            )
+        }
     </a>
     <div class="text-wrapper | flow" data-tempo="allegro">
         <HeadingLevel class="title" id={v.slugify(book?.data.full_title)}>
